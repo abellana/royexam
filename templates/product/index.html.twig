@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} List Products !{% endblock %}
+
+
+{% block body %}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .product { width:300px; display:inline-block}
+    .handlers { width:300px; display:inline }
+    .message { color: #008000 }
+</style>
+
+
+<div class="example-wrapper">
+	<p><a href="create">Create a new product</a></p>
+	<h3> List of all products</h3>
+
+	{% for message in app.flashes('success') %}
+	<div class="flash-notice">
+		{{ message }}
+	</div>
+	{% endfor %}
+
+	<ul>
+	    {% for user in products %}
+	        <div>
+	        	<div class="product"><a href="product/{{ user.id }}"> {{ user.name }} </a></div>
+	        	<div class="handlers"><a href="product/{{ user.id }}">Update</a> <a href="delete/{{ user.id }}">delete</a></a>
+	        </div>
+
+	    {% endfor %}
+	</ul>
+
+</div>
+{% endblock %}
